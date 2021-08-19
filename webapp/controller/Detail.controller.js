@@ -45,6 +45,9 @@ sap.ui.define([
 					this.oView.byId("dynamicPageId").setBusy(false);
 					this.oViewModel.setProperty("/bEditState", false);
 					sap.m.MessageToast.show("Update Employee info successfully.");
+					this.getRouter().navTo("List", {
+						"refresh": "refresh"
+					});
 				}.bind(this),
 				error: function(error) {
 					this.oView.byId("dynamicPageId").setBusy(false);

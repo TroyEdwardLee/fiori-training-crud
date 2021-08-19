@@ -42,6 +42,7 @@ sap.ui.define([
 			}), "businessModel");
 			this.oBusinessModel = this.oView.getModel("businessModel");
 			this._oTable = this.oView.byId("employeeTableId");
+			this.getRouter().getRoute("List").attachMatched(this._onRouteMatched, this);
 			this._fetchEmployeeF4();
 		},
 		
@@ -53,6 +54,15 @@ sap.ui.define([
 		// onAfterRendering: function() {
 		//	
 		// },
+		
+		_onRouteMatched : function (oEvent) {
+			var oArgs, refresh;
+			oArgs = oEvent.getParameter("arguments");
+			refresh = oArgs.refresh;
+			if (refresh) {
+				this.oView.byId("filterBarId").fireSearch();
+			}
+		},
 		
 		_fetchEmployeeF4: function() {
 			this.oBusinessModel.setProperty("/EmployeesF4", []);
@@ -231,8 +241,7 @@ sap.ui.define([
 		
 		handleEditPress: function() {
 			var oView = this.oView,
-				oTable = oView.byId("employeeTableId"),
-				aPath = oTable.getSelectedContextPaths();
+				aPath = this._oTable.getSelectedContextPaths();
 			if  (!aPath.length) {
 				return;
 			}
@@ -257,8 +266,7 @@ sap.ui.define([
 		},
 		
 		handleConfirmEdit: function() {
-			var oTable = this.oView.byId("employeeTableId"),
-				oEmployee = this.oViewModel.getProperty("/maintainEmployee");
+			var oEmployee = this.oViewModel.getProperty("/maintainEmployee");
 			this._oEditDialog.setBusy(true);
 			this.oDataModel.update("/ZEMPLOYEEINFOSet('" + oEmployee.Id + "')", oEmployee, {
 				groupId: "updateEmployee",
@@ -266,7 +274,7 @@ sap.ui.define([
 					this._oEditDialog.setBusy(false);
 					this._oEditDialog.close();
 					sap.m.MessageToast.show("Update Employee info successfully.");
-					oTable.removeSelections(true);
+					this._oTable.removeSelections(true);
 					this._fetchEmployeeData();
 				}.bind(this),
 				error: function(error) {
@@ -287,23 +295,22 @@ sap.ui.define([
 		},
 		
 		_removeEmployee: function() {
-			var oTable = this.oView.byId("employeeTableId"),
-				aPath = oTable.getSelectedContextPaths();
+			var aPath = this._oTable.getSelectedContextPaths();
 			if  (!aPath.length) {
 				return;
 			}
 			var sSelectedId = this.oBusinessModel.getProperty(aPath[0] + "/Id");
-			oTable.setBusy(true);
+			this._oTable.setBusy(true);
 			this.oDataModel.remove("/ZEMPLOYEEINFOSet('" + sSelectedId + "')", {
 				groupId: "removeEmployee",
 				success: function(oRes) {
-					oTable.setBusy(false);
+					this._oTable.setBusy(false);
 					sap.m.MessageToast.show("Delete Employee info successfully.");
-					oTable.removeSelections(true);
+					this._oTable.removeSelections(true);
 					this._fetchEmployeeData();
 				}.bind(this),
 				error: function(error) {
-					oTable.setBusy(false);
+					this._oTable.setBusy(false);
 					sap.m.MessageToast.show("Delete Employee info failed.");
 				}
 			});

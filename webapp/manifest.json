@@ -110,7 +110,7 @@
 			},
 			"routes": [
 				{
-					"pattern": "",
+					"pattern": ":refresh:",
 					"name": "List",
 					"target": [
 						"List"
