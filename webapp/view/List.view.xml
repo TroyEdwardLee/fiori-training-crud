@@ -1,0 +1,75 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar"
+	controllerName="fiori.training.crudfiori-training-crud.controller.List" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>listTitle}">
+		<content>
+			<VBox>
+				<fb:FilterBar id="filterBarId" reset="onReset" search="onSearch"
+					showRestoreButton="true" showClearOnFB="true" busyIndicatorDelay="0">
+					<fb:filterGroupItems>
+						<fb:FilterGroupItem groupName="firstGroup" name="A" label="Employee" visibleInFilterBar="true">
+							<fb:control>
+								<Input id="employeeInputId" showValueHelp="true" showSuggestion="true"
+									busyIndicatorDelay="0" valueHelpRequest="handleEmployeesValueHelp"
+									value="{viewModel>/filters/Id}"
+									suggestionItems="{ path: 'businessModel>/EmployeesF4', sorter: { path: 'Id' } }">
+									<suggestionItems>
+										<core:ListItem key="{businessModel>Id}" text="{businessModel>Id}"
+											additionalText="{businessModel>Name}"/>
+									</suggestionItems>
+								</Input>
+							</fb:control>
+						</fb:FilterGroupItem>
+					</fb:filterGroupItems>
+				</fb:FilterBar>
+				<Table id="employeeTableId" inset="true" growing="true" growingThreshold="10"
+					busyIndicatorDelay="0" mode="SingleSelectLeft" selectionChange="handleTableSelectionChange"
+					items="{ path: 'businessModel>/Employees', sorter: { path: 'Id' } }">
+					<headerToolbar>
+						<OverflowToolbar>
+							<content>
+								<Title text="{viewModel>/sTableTitle}" level="H2"/>
+								<ToolbarSpacer />
+								<Button icon="sap-icon://add" tooltip="Add Employee" press="handleAddPress"/>
+								<Button icon="sap-icon://user-edit" tooltip="Edit Employee" press="handleEditPress"
+									enabled="{=${viewModel>/iTableSelectedLen} !== 0}"/>
+								<Button icon="sap-icon://delete" tooltip="Delete Employee" press="handleDeletePress"
+									enabled="{=${viewModel>/iTableSelectedLen} !== 0}"/>
+							</content>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column width="12em">
+							<Text text="Employee ID"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Name"/>
+						</Column>
+						<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+							<Text text="Hire Date"/>
+						</Column>
+						<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+							<Text text="Age"/>
+						</Column>
+						<Column hAlign="Begin">
+							<Text text="Address"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Navigation" press="handleListItemPress">
+							<cells>
+								<ObjectIdentifier title="{businessModel>Id}"/>
+								<Text text="{businessModel>Name}"/>
+								<Text text="{
+									path: 'businessModel>Birthdate',
+									formatter: '.formatter.date'
+								}"/>
+								<Text text="{businessModel>Age}"/>
+								<Text text="{businessModel>Address}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>
