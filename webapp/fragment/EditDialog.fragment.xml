@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:layout="sap.ui.layout">
 	<Dialog id="editDialogId" title="Edit Employee: {viewModel>/maintainEmployee/Id}"
-		class="sapUiResponsiveContentPadding" titleAlignment="Center"
+		class="sapUiResponsiveContentPadding" titleAlignment="Center" busyIndicatorDelay="0"
 		afterClose="handleAddDialogAfterClose" icon="sap-icon://user-edit" state="Information">
 		<content>
 			<fm:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="8"
@@ -8,13 +8,13 @@
 				singleContainerFullSize="false">
 				<fm:content>
 					<Label text="Name"/>
-					<Input value="{viewModel>/maintainEmployee/Name}">
+					<Input maxLength="10" value="{viewModel>/maintainEmployee/Name}">
 						<layoutData>
 							<layout:GridData span="XL4 L4 M4 S12"/>
 						</layoutData>
 					</Input>
 					<Label text="Age"/>
-					<Input value="{viewModel>/maintainEmployee/Age}">
+					<Input maxLength="3" type="Number" value="{viewModel>/maintainEmployee/Age}">
 						<layoutData>
 							<layout:GridData span="XL4 L4 M4 S12"/>
 						</layoutData>
@@ -33,7 +33,7 @@
 						</layoutData>
 					</DatePicker>
 					<Label text="Address"/>
-					<TextArea value="{viewModel>/maintainEmployee/Address}" rows="4">
+					<TextArea maxLength="50" value="{viewModel>/maintainEmployee/Address}" rows="4">
 						<layoutData>
 							<layout:GridData span="XL4 L4 M4 S12"/>
 						</layoutData>

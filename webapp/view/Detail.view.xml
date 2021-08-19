@@ -1,7 +1,7 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:layout="sap.ui.layout"
 	xmlns:fm="sap.ui.layout.form"
 	controllerName="fiori.training.crudfiori-training-crud.controller.Detail" xmlns:html="http://www.w3.org/1999/xhtml">
-	<f:DynamicPage id="dynamicPageId" headerExpanded="{device>/system/desktop}" showFooter="true">
+	<f:DynamicPage id="dynamicPageId" headerExpanded="{device>/system/desktop}" busyIndicatorDelay="0" showFooter="true">
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
@@ -12,16 +12,16 @@
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>
-		<!--<f:header>
+		<f:header>
 			<f:DynamicPageHeader pinnable="true">
 				<layout:HorizontalLayout allowWrapping="true">
 					<layout:VerticalLayout>
-						<ObjectAttribute title="Title"/>
-						<ObjectStatus text="{Title}"/>
+						<ObjectAttribute title="Employee ID"/>
+						<ObjectStatus text="{Id}"/>
 					</layout:VerticalLayout>
 				</layout:HorizontalLayout>
 			</f:DynamicPageHeader>
-		</f:header>-->
+		</f:header>
 		<f:content>
 			<Panel>
 				<content>
@@ -30,19 +30,14 @@
 						emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
 						columnsL="1" columnsM="1" singleContainerFullSize="false">
 						<fm:content>
-							<!--<core:Title level="H6">
-								<core:customData>
-									<core:CustomData key="height" value="zero" writeToDom="true"/>
-								</core:customData>
-							</core:Title>-->
 							<Label text="Name"/>
-							<Input value="{Name}" editable="{viewModel>/bEditState}">
+							<Input value="{Name}" maxLength="10" editable="{viewModel>/bEditState}">
 								<layoutData>
 									<layout:GridData span="XL4 L4 M4 S12"/>
 								</layoutData>
 							</Input>
 							<Label text="Age"/>
-							<Input value="{Age}" editable="{viewModel>/bEditState}">
+							<Input value="{Age}" type="Number" maxLength="3" editable="{viewModel>/bEditState}">
 								<layoutData>
 									<layout:GridData span="XL4 L4 M4 S12"/>
 								</layoutData>
@@ -60,7 +55,7 @@
 								</layoutData>
 							</DatePicker>
 							<Label text="Address"/>
-							<TextArea value="{Address}" editable="{viewModel>/bEditState}" rows="4">
+							<TextArea value="{Address}" maxLength="50" editable="{viewModel>/bEditState}" rows="4">
 								<layoutData>
 									<layout:GridData span="XL4 L4 M4 S12"/>
 								</layoutData>

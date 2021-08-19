@@ -13,13 +13,13 @@
 						</layoutData>
 					</Input>
 					<Label text="Name"/>
-					<Input value="{viewModel>/maintainEmployee/Name}">
+					<Input maxLength="10" value="{viewModel>/maintainEmployee/Name}">
 						<layoutData>
 							<layout:GridData span="XL4 L4 M4 S12"/>
 						</layoutData>
 					</Input>
 					<Label text="Age"/>
-					<Input value="{viewModel>/maintainEmployee/Age}">
+					<Input maxLength="3" type="Number" value="{viewModel>/maintainEmployee/Age}">
 						<layoutData>
 							<layout:GridData span="XL4 L4 M4 S12"/>
 						</layoutData>
@@ -38,7 +38,7 @@
 						</layoutData>
 					</DatePicker>
 					<Label text="Address"/>
-					<TextArea value="{viewModel>/maintainEmployee/Address}" rows="4">
+					<TextArea maxLength="50" value="{viewModel>/maintainEmployee/Address}" rows="4">
 						<layoutData>
 							<layout:GridData span="XL4 L4 M4 S12"/>
 						</layoutData>

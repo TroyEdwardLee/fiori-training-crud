@@ -1,6 +1,6 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:fb="sap.ui.comp.filterbar"
 	controllerName="fiori.training.crudfiori-training-crud.controller.List" xmlns:html="http://www.w3.org/1999/xhtml">
-	<Page title="{i18n>listTitle}">
+	<Page id="listPageId" title="{i18n>listTitle}" busyIndicatorDelay="0">
 		<content>
 			<VBox>
 				<fb:FilterBar id="filterBarId" reset="onReset" search="onSearch"

@@ -35,15 +35,20 @@ sap.ui.define([
 		
 		handleSavePress: function() {
 			var oObject = this.oView.byId("dynamicPageId").getBindingContext().getProperty();
+			this.oView.byId("dynamicPageId").setBusy(true);
 			this.oDataModel.update(this.sPath, oObject, {
-				headers: {
+				/*headers: {
 					"Content-ID": 1
-				},
+				},*/
+				groupId: "updateEmployee",
 				success: function(oRes) {
-					sap.m.MessageToast.show("Successfully.");
+					this.oView.byId("dynamicPageId").setBusy(false);
+					this.oViewModel.setProperty("/bEditState", false);
+					sap.m.MessageToast.show("Update Employee info successfully.");
 				}.bind(this),
 				error: function(error) {
-					sap.m.MessageToast.show("Falied.");
+					this.oView.byId("dynamicPageId").setBusy(false);
+					sap.m.MessageToast.show("Update Employee info failed.");
 				}.bind(this),
 				refreshAfterChange: true
 			});
