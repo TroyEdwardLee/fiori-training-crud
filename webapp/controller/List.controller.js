@@ -208,7 +208,7 @@ sap.ui.define([
 				error: function(error) {
 					this._oAddDialog.setBusy(false);
 					sap.m.MessageToast.show("Add Employee info failed.");
-				}
+				}.bind(this)
 			});
 		},
 		
