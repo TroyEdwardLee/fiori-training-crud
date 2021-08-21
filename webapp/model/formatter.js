@@ -8,6 +8,8 @@ sap.ui.define([
 				return title1.trim() + " " + title2.trim();
 			} else if (title2) {
 				return title2.trim();
+			} else if (title1) {
+				return title2.trim();
 			}
 			return "";
 		},

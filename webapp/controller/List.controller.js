@@ -10,7 +10,6 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("fiori.training.crudfiori-training-crud.controller.List", {
-
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -74,6 +73,7 @@ sap.ui.define([
 		},
 
 		_fetchEmployeeData: function() {
+			this._oTable.removeSelections(true);
 			var sName = this.oViewModel.getProperty("/filters/Id"),
 				aFilter = [];
 			if (sName && sName.trim().length) {
@@ -154,6 +154,11 @@ sap.ui.define([
 		},
 		
 		onSearch: function() {
+			this._fetchEmployeeData();
+		},
+		
+		handleFilterClearPress: function() {
+			this.oViewModel.setProperty("/filters/Id", "");
 			this._fetchEmployeeData();
 		},
 		

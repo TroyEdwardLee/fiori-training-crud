@@ -3,7 +3,7 @@
 	<Page id="listPageId" title="{i18n>listTitle}" busyIndicatorDelay="0">
 		<content>
 			<VBox>
-				<fb:FilterBar id="filterBarId" reset="onReset" search="onSearch"
+				<fb:FilterBar id="filterBarId" search="onSearch" clear="handleFilterClearPress"
 					showRestoreButton="true" showClearOnFB="true" busyIndicatorDelay="0">
 					<fb:filterGroupItems>
 						<fb:FilterGroupItem groupName="firstGroup" name="A" label="Employee" visibleInFilterBar="true">
