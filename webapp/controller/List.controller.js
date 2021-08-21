@@ -42,7 +42,6 @@ sap.ui.define([
 			}), "businessModel");
 			this.oBusinessModel = this.oView.getModel("businessModel");
 			this._oTable = this.oView.byId("employeeTableId");
-			this.getRouter().getRoute("List").attachMatched(this._onRouteMatched, this);
 			this._fetchEmployeeF4();
 		},
 		
@@ -54,15 +53,6 @@ sap.ui.define([
 		// onAfterRendering: function() {
 		//	
 		// },
-		
-		_onRouteMatched : function (oEvent) {
-			var oArgs, refresh;
-			oArgs = oEvent.getParameter("arguments");
-			refresh = oArgs.refresh;
-			if (refresh) {
-				this.oView.byId("filterBarId").fireSearch();
-			}
-		},
 		
 		_fetchEmployeeF4: function() {
 			this.oBusinessModel.setProperty("/EmployeesF4", []);
