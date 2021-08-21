@@ -197,7 +197,7 @@ sap.ui.define([
 				}.bind(this),
 				error: function(error) {
 					this._oAddDialog.setBusy(false);
-					sap.m.MessageToast.show("Add Employee info failed.");
+					sap.m.MessageBox.error("Add Employee info failed.");
 				}.bind(this)
 			});
 		},
@@ -265,11 +265,12 @@ sap.ui.define([
 					this._oEditDialog.close();
 					sap.m.MessageToast.show("Update Employee info successfully.");
 					this._oTable.removeSelections(true);
+					this.oViewModel.setProperty("/iTableSelectedLen", 0);
 					this._fetchEmployeeData();
 				}.bind(this),
 				error: function(error) {
 					this._oEditDialog.setBusy(false);
-					sap.m.MessageToast.show("Update Employee info failed.");
+					sap.m.MessageBox.error("Update Employee info failed.");
 				}
 			});
 		},
@@ -297,11 +298,12 @@ sap.ui.define([
 					this._oTable.setBusy(false);
 					sap.m.MessageToast.show("Delete Employee info successfully.");
 					this._oTable.removeSelections(true);
+					this.oViewModel.setProperty("/iTableSelectedLen", 0);
 					this._fetchEmployeeData();
 				}.bind(this),
 				error: function(error) {
 					this._oTable.setBusy(false);
-					sap.m.MessageToast.show("Delete Employee info failed.");
+					sap.m.MessageBox.error("Delete Employee info failed.");
 				}
 			});
 		}

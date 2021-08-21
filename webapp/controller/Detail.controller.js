@@ -48,9 +48,8 @@ sap.ui.define([
 				}.bind(this),
 				error: function(error) {
 					this.oView.byId("dynamicPageId").setBusy(false);
-					sap.m.MessageToast.show("Update Employee info failed.");
-				}.bind(this),
-				refreshAfterChange: true
+					sap.m.MessageBox.error("Update Employee info failed.");
+				}.bind(this)
 			});
 		},
 		
