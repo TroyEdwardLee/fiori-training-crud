@@ -190,7 +190,13 @@ sap.ui.define([
 		},
 		
 		handleConfirmAdd: function() {
-			var oEmployee = this.oViewModel.getProperty("/maintainEmployee");
+			var oEmployee = this.oViewModel.getProperty("/maintainEmployee");/*{
+				"Id": this.generateGuid(),
+				"Name": "Lee Test",
+				"Age": "30",
+				"Birthdate": new Date(),
+				"Address": "sdfsdfsdf"
+			};*/
 			this._oAddDialog.setBusy(true);
 			this.oDataModel.create("/ZEMPLOYEEINFOSet", oEmployee, {
 				groupId: "addEmployee",
