@@ -132,7 +132,7 @@ sap.ui.define([
 				}.bind(this));
 
 				var oToken = new sap.m.Token();
-				oToken.setKey(Number(this.oView.byId("employeeInputId").getSelectedKey()));
+				oToken.setKey(this.oView.byId("employeeInputId").getSelectedKey());
 				oToken.setText(this.oView.byId("employeeInputId").getValue());
 				this._oEmployeeValueHelpDialog.setTokens([oToken]);
 				this._oEmployeeValueHelpDialog.open();
